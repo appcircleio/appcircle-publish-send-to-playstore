@@ -1,0 +1,23 @@
+platform: Android
+buildPlatform:
+displayName: "Send an App version to Google PlayStore "
+description: "Select Appstore connect settings for the process"
+inputs:
+- key: "AC_STORE_CREDENTIAL_ID"
+  defaultValue: ""
+  isRequired: true
+  editorType: select
+  title: Which Google Api connection will be used
+  description: "Select a store credential, managed in Integrations."
+  options: "ServerCallRequiredToGetValues"
+  helpText:
+- key: "AC_RELEASE_NOTES"
+  editorType: textarea
+  isRequired: false
+  title: Release notes for the Submission
+  description: Filling that area may effect playstore submission process.
+  helpText:
+processFilename: bash
+processArguments: '%AC_STEP_TEMP%/main.sh'
+files:
+- "main.sh"
