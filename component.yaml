@@ -17,6 +17,14 @@ inputs:
   title: Release notes for the Submission
   description: Filling that area may effect playstore submission process.
   helpText:
+- key: "AC_RELEASE_STATUS"
+  defaultValue: ""
+  isRequired: false
+  editorType: select
+  title: Fastlane Release Status
+  description: "Allow you to specify draft or completed status, first upload may require draft upload"
+  options: "completed,draft"
+  helpText:
 processFilename: bash
 processArguments: '%AC_STEP_TEMP%/main.sh'
 files:
