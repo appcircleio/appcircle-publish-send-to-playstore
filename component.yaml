@@ -2,6 +2,7 @@ platform: Android
 buildPlatform:
 displayName: "Send an App version to Google PlayStore "
 description: "Select Appstore connect settings for the process"
+marketPlace: "GooglePlayStore"
 inputs:
 - key: "AC_STORE_CREDENTIAL_ID"
   defaultValue: "Select"
