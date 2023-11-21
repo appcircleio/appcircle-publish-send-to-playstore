@@ -12,6 +12,14 @@ inputs:
   description: "Select a store credential, managed in Integrations."
   options: "ServerCallRequiredToGetValues"
   helpText:
+- key: "AC_STACK_TYPE"
+  defaultValue: "Alpha"
+  isRequired: false
+  editorType: select
+  title: Stack type for submit
+  description: "Select a release track to which to send the binary. After the binary is uploaded, you can release it from the Google Play Console."
+  options: "Internal,Alpha,Beta,Production"
+  helpText:
 - key: "AC_RELEASE_STATUS"
   defaultValue: ""
   isRequired: false
