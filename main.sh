@@ -30,6 +30,7 @@ fi
   cp archive.zip "$AC_OUTPUT_DIR" 
   rm archive.zip
   echo "Files zipped and copied to $AC_OUTPUT_DIR"
+  printenv
   
   bundle exec fastlane $FastlaneParams --verbose
   if [ $? -eq 0 ]
