@@ -16,7 +16,7 @@ inputs:
   defaultValue: "Alpha"
   isRequired: false
   editorType: select
-  title: Stack type for submit
+  title: Track type for submit
   description: "Select a release track to which to send the binary. After the binary is uploaded, you can release it from the Google Play Console."
   options: "Internal,Alpha,Beta,Production"
   helpText:
