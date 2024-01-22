@@ -13,7 +13,7 @@ inputs:
   options: "ServerCallRequiredToGetValues"
   helpText:
 - key: "AC_STACK_TYPE"
-  defaultValue: "Alpha"
+  defaultValue: "alpha"
   isRequired: false
   editorType: select
   title: Track type for submit
