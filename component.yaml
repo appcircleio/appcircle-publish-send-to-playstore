@@ -1,7 +1,7 @@
 platform: Android
 buildPlatform:
-displayName: "Send an App version to Google Play Store"
-description: "Select Play Store settings for the process"
+displayName: "Send to Google Play"
+description: "Upload binary for Google Play publishing"
 marketPlace: "GooglePlayStore"
 inputs:
 - key: "AC_STORE_CREDENTIAL_ID"
