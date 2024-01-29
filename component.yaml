@@ -1,4 +1,5 @@
 platform: Android
+purpose: Publish
 buildPlatform:
 displayName: "Send to Google Play"
 description: "Upload binary for Google Play publishing"
