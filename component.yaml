@@ -5,14 +5,6 @@ displayName: "Send to Google Play"
 description: "Upload binary for Google Play publishing"
 marketPlace: "GooglePlayStore"
 inputs:
-- key: "AC_STORE_CREDENTIAL_ID"
-  defaultValue: "Select"
-  isRequired: true
-  editorType: select
-  title: Select a Google Play Store Api Key
-  description: "Select a store credential, managed in Integrations."
-  options: "ServerCallRequiredToGetValues"
-  helpText:
 - key: "AC_STACK_TYPE"
   defaultValue: "alpha"
   isRequired: false
