@@ -22,6 +22,14 @@ fi
   mkdir fastlane
   touch fastlane/Appfile
   touch fastlane/Fastfile
+   
+  if [ -f "$AC_RELEASE_NOTES" ]; then
+    echo "Found change log, copying to fastlane/metadata/android/en-us/changelogs/default.txt"
+    mv "$AC_RELEASE_NOTES" "fastlane/metadata/android/en-us/changelogs/default.txt"
+  else
+    echo "Warning: AC_RELEASE_NOTES is not found, changelog will be skipped."
+  fi
+
   mv "$FastFileConfig" "fastlane/Fastfile"
   mv "$AppFileConfig" "fastlane/Appfile"
   mv "$ApiKey" "$ApiKeyFileName"

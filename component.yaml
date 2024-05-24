@@ -22,6 +22,7 @@ inputs:
   options: "completed,draft"
   helpText:
 - key: "AC_RELEASE_NOTES"
+  defaultValue: "$AC_RELEASE_NOTES"
   editorType: textarea
   isRequired: false
   title: Release notes for the Submission
