@@ -25,7 +25,8 @@ fi
    
   if [ -f "$AC_RELEASE_NOTES" ]; then
     echo "Found change log, copying to fastlane/metadata/android/en-us/changelogs/default.txt"
-    mv "$AC_RELEASE_NOTES" "fastlane/metadata/android/en-us/changelogs/default.txt"
+    mkdir -p "fastlane/metadata/android/en-us/changelogs"
+    cp "$AC_RELEASE_NOTES" "fastlane/metadata/android/en-us/changelogs/default.txt"
   else
     echo "Warning: AC_RELEASE_NOTES is not found, changelog will be skipped."
   fi
