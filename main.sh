@@ -3,10 +3,10 @@
   export LANG=en_US.UTF-8
   export LANGUAGE=en_US.UTF-8
   locale
-  curl -o "./$AndroidFileName" -k $AndroidFileUrl
+  curl -o "./$AC_APP_FILE_NAME" -k $AC_APP_FILE_URL
   ls -lh
 
-file_path="./$AndroidFileName"
+file_path="./$AC_APP_FILE_NAME"
 
   if [ -e "$file_path" ]; then
     file_size=$(du -h "$file_path" | cut -f1)
@@ -22,11 +22,11 @@ fi
   mkdir fastlane
   touch fastlane/Appfile
   touch fastlane/Fastfile
-  mv "$FastFileConfig" "fastlane/Fastfile"
-  mv "$AppFileConfig" "fastlane/Appfile"
-  mv "$ApiKey" "$ApiKeyFileName"
+  mv "$AC_FASTFILE_CONFIG" "fastlane/Fastfile"
+  mv "$AC_APP_FILE_CONFIG" "fastlane/Appfile"
+  mv "$AC_API_KEY" "$AC_API_KEY_FILE_NAME"
   
-  bundle exec fastlane $FastlaneParams --verbose
+  bundle exec fastlane $AC_FASTLANE_PARAMS --verbose
   if [ $? -eq 0 ]
   then
   echo "PlayStore progress succeeded"
