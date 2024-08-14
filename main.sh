@@ -27,7 +27,14 @@ fi
   mv "$AC_APP_FILE_CONFIG" "fastlane/Appfile"
   mv "$AC_API_KEY" "$AC_API_KEY_FILE_NAME"
   
-  bundle exec fastlane $AC_FASTLANE_PARAMS --verbose
+  if [[ "$AC_BINARY_FILE_TYPE" == "apk" ]] ; then
+      bundle exec fastlane upload_apk --verbose
+  fi
+
+  if [[ "$AC_BINARY_FILE_TYPE" == "aab" ]] ; then
+      bundle exec fastlane upload_aab --verbose
+  fi
+  
   if [ $? -eq 0 ]
   then
   echo "Google Play Console progress succeeded"
