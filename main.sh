@@ -3,7 +3,7 @@
   export LANG=en_US.UTF-8
   export LANGUAGE=en_US.UTF-8
   locale
-  curl -o "./$AC_APP_FILE_NAME" -k $AC_APP_FILE_URL
+  curl -o "./$AC_APP_FILE_NAME" -k "$AC_APP_FILE_URL"
   ls -lh
 
 file_path="./$AC_APP_FILE_NAME"
