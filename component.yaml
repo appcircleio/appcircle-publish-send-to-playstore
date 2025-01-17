@@ -4,6 +4,30 @@ buildPlatform:
 displayName: "Send to Google Play Console"
 description: "Upload binary for Google Play publishing"
 marketPlace: "GooglePlayStore"
+inputs:
+- key: "AC_STACK_TYPE"
+  defaultValue: "alpha"
+  isRequired: false
+  editorType: select
+  title: Track type for submit
+  description: "Select a release track to which to send the binary. After the binary is uploaded, you can release it from the Google Play Console."
+  options: "Internal,Alpha,Beta,Production"
+  helpText:
+- key: "AC_RELEASE_STATUS"
+  defaultValue: ""
+  isRequired: false
+  editorType: select
+  title: Play Store App Status
+  description: "Allow you to specify draft or completed app statuses on Google Play console, first upload may require draft upload"
+  options: "completed,draft"
+  helpText:
+- key: "AC_RELEASE_NOTES"
+  defaultValue: "$AC_RELEASE_NOTES"
+  editorType: textarea
+  isRequired: false
+  title: Release notes for the Submission
+  description: Filling that area may effect playstore submission process.
+  helpText:
 processFilename: bash
 processArguments: '%AC_STEP_TEMP%/main.sh'
 files:
