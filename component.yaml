@@ -6,12 +6,12 @@ description: "Upload binary for Google Play publishing"
 marketPlace: "GooglePlayStore"
 inputs:
 - key: "AC_STACK_TYPE"
-  defaultValue: "alpha"
-  isRequired: false
+  defaultValue: "internal"
+  isRequired: true
   editorType: select
   title: Track type for submit
   description: "Select a release track to which to send the binary. After the binary is uploaded, you can release it from the Google Play Console."
-  options: "Internal,Alpha,Beta,Production"
+  options: "ServerCallRequiredToGetValues"
   helpText:
 - key: "AC_RELEASE_STATUS"
   defaultValue: ""
