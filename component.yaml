@@ -21,6 +21,14 @@ inputs:
   description: "Allow you to specify draft or completed app statuses on Google Play console, first upload may require draft upload"
   options: "completed,draft"
   helpText:
+- key: "AC_AUTO_SEND_PLAYSTORE_REVIEW"
+  defaultValue: ""
+  isRequired: true
+  editorType: select
+  title: Auto send for review
+  description: "Select whether your changes should automatically go for review on the Google Play Console."
+  options: "ServerCallRequiredToGetValues"
+  helpText:
 - key: "AC_RELEASE_NOTES"
   defaultValue: "$AC_RELEASE_NOTES"
   editorType: textarea
