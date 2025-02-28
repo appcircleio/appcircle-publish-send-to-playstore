@@ -10,7 +10,7 @@ inputs:
   isRequired: true
   editorType: select
   title: Track type for submit
-  description: "Select a release track to which to send the binary. After the binary is uploaded, you can release it from the Google Play Console."
+  description: "Select a release track to upload the binary. After uploading, release it from the Google Play Console. A valid Google API key is required to list tracks."
   options: "ServerCallRequiredToGetValues"
   helpText:
 - key: "AC_RELEASE_STATUS"
