@@ -10,8 +10,10 @@ file_path="./$AC_APP_FILE_NAME"
 
   if [ -e "$file_path" ]; then
     file_size=$(du -h "$file_path" | cut -f1)
+    file_hash=$(sha256sum "$file_path" | awk '{print $1}')
     echo "File exists: $file_path"
     echo "File size: $file_size"
+    echo "File SHA-256 Hash: $file_hash"
 else
     echo "File does not exist: $file_path"
 fi
