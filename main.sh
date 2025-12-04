@@ -25,13 +25,52 @@ fi
   touch fastlane/Appfile
   touch fastlane/Fastfile
    
-  if [ -f "$AC_RELEASE_NOTES_FILE" ]; then
-    echo "Found change log in AC_RELEASE_NOTES, copying to fastlane/metadata/android/en-us/changelogs/default.txt"
-    mkdir -p "fastlane/metadata/android/en-us/changelogs"
-    cp "$AC_RELEASE_NOTES_FILE" "fastlane/metadata/android/en-us/changelogs/default.txt"
-  else
-    echo "Warning: AC_RELEASE_NOTES_FILE is not found, changelog will be skipped."
-  fi
+CHANGELOG_FILE="$AC_RELEASE_NOTES_FILE"
+FASTLANE_DIR="fastlane/metadata/android"
+
+if [ ! -f "$CHANGELOG_FILE" ]; then
+  echo "Warning: AC_RELEASE_NOTES_FILE not found, changelog will be skipped."
+  exit 0
+fi
+
+if grep -qE "<[a-zA-Z0-9-]+>" "$CHANGELOG_FILE"; then
+  echo "Multi-language changelog detected. Splitting into Fastlane format..."
+
+  VERSION="default"
+
+  current_lang=""
+  current_text=""
+
+  while IFS= read -r line; do
+
+    if [[ $line =~ \<([a-zA-Z0-9-]+)\> ]]; then
+      current_lang="${BASH_REMATCH[1]}"
+      current_text=""
+      continue
+    fi
+
+    if [[ $line =~ \<\/([a-zA-Z0-9-]+)\> ]]; then
+      mkdir -p "$FASTLANE_DIR/$current_lang/changelogs"
+      echo -e "$current_text" > "$FASTLANE_DIR/$current_lang/changelogs/$VERSION.txt"
+      echo "Created changelog for $current_lang"
+      current_lang=""
+      current_text=""
+      continue
+    fi
+
+    if [ -n "$current_lang" ]; then
+      current_text+="$line\n"
+    fi
+
+  done < "$CHANGELOG_FILE"
+
+else
+
+  echo "No language tags found. Using single changelog."
+  mkdir -p "$FASTLANE_DIR/en-US/changelogs"
+  cp "$CHANGELOG_FILE" "$FASTLANE_DIR/en-US/changelogs/default.txt"
+  echo "Created default changelog."
+fi
 
   mv "$AC_FASTFILE_CONFIG" "fastlane/Fastfile"
   mv "$AC_APP_FILE_CONFIG" "fastlane/Appfile"
