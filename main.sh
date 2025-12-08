@@ -43,13 +43,20 @@ if grep -qE "<[a-zA-Z0-9-]+>" "$CHANGELOG_FILE"; then
 
   while IFS= read -r line; do
 
-    if [[ $line =~ \<([a-zA-Z0-9-]+)\> ]]; then
+    # Match opening tag with standard locale format: <en> or <en-US>
+    if [[ $line =~ \<([a-z]{2}(-[A-Z]{2})?)\> ]]; then
       current_lang="${BASH_REMATCH[1]}"
       current_text=""
       continue
     fi
 
-    if [[ $line =~ \<\/([a-zA-Z0-9-]+)\> ]]; then
+    # Match closing tag with standard locale format: </en> or </en-US>
+    if [[ $line =~ \<\/([a-z]{2}(-[A-Z]{2})?)\> ]]; then
+      closing_lang="${BASH_REMATCH[1]}"
+      if [[ "$closing_lang" != "$current_lang" ]]; then
+        echo "Error: Mismatched language tags <$current_lang> ... </$closing_lang> in $CHANGELOG_FILE" >&2
+        exit 1
+      fi
       mkdir -p "$FASTLANE_DIR/$current_lang/changelogs"
       echo -e "$current_text" > "$FASTLANE_DIR/$current_lang/changelogs/$VERSION.txt"
       echo "Created changelog for $current_lang"
