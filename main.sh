@@ -66,7 +66,7 @@ if grep -qE "<[a-zA-Z0-9-]+>" "$CHANGELOG_FILE"; then
     fi
 
     if [ -n "$current_lang" ]; then
-      current_text+="$line\n"
+      current_text+="$line"$'\n'
     fi
 
   done < "$CHANGELOG_FILE"
