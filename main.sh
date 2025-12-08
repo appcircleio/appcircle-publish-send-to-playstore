@@ -58,7 +58,7 @@ if grep -qE "<[a-zA-Z0-9-]+>" "$CHANGELOG_FILE"; then
         exit 1
       fi
       mkdir -p "$FASTLANE_DIR/$current_lang/changelogs"
-      echo -e "$current_text" > "$FASTLANE_DIR/$current_lang/changelogs/$VERSION.txt"
+      printf '%s' "$current_text" > "$FASTLANE_DIR/$current_lang/changelogs/$VERSION.txt"
       echo "Created changelog for $current_lang"
       current_lang=""
       current_text=""
