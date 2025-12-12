@@ -33,7 +33,7 @@ if [ ! -f "$CHANGELOG_FILE" ]; then
   exit 0
 fi
 
-if grep -qE "<[a-z]{2}-[A-Z]{2}>" "$CHANGELOG_FILE"; then
+if grep -qE "<[a-z]{2}-[A-Za-z0-9]+>" "$CHANGELOG_FILE"; then
   echo "Multi-language changelog detected. Splitting into Fastlane format..."
 
   VERSION="default"
@@ -43,15 +43,13 @@ if grep -qE "<[a-z]{2}-[A-Z]{2}>" "$CHANGELOG_FILE"; then
 
   while IFS= read -r line; do
 
-    # Match opening tag with standard locale format: <en> or <en-US>
-    if [[ $line =~ \<([a-z]{2}(-[A-Z]{2})?)\> ]]; then
+    if [[ $line =~ \<([a-z]{2}-[A-Za-z0-9]+)\> ]]; then
       current_lang="${BASH_REMATCH[1]}"
       current_text=""
       continue
     fi
-
-    # Match closing tag with standard locale format: </en> or </en-US>
-    if [[ $line =~ \<\/([a-z]{2}(-[A-Z]{2})?)\> ]]; then
+ 
+    if [[ $line =~ \<\/([a-z]{2}-[A-Za-z0-9]+)\> ]]; then
       closing_lang="${BASH_REMATCH[1]}"
       if [[ "$closing_lang" != "$current_lang" ]]; then
         echo "Error: Mismatched language tags <$current_lang> ... </$closing_lang> in $CHANGELOG_FILE" >&2
