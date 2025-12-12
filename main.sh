@@ -33,7 +33,7 @@ if [ ! -f "$CHANGELOG_FILE" ]; then
   exit 0
 fi
 
-if grep -qE "<[a-zA-Z0-9-]+>" "$CHANGELOG_FILE"; then
+if grep -qE "<[a-z]{2}-[A-Z]{2}>" "$CHANGELOG_FILE"; then
   echo "Multi-language changelog detected. Splitting into Fastlane format..."
 
   VERSION="default"
