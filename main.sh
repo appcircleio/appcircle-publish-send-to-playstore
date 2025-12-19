@@ -44,7 +44,7 @@ else
     current_lang=""
     current_text=""
 
-    while IFS= read -r line; do
+    while IFS= read -r line || [ -n "$line" ]; do
 
       if [[ $line =~ \<([a-z]{2}(-[A-Za-z0-9]+)?)\> ]]; then
         current_lang="${BASH_REMATCH[1]}"
@@ -59,7 +59,7 @@ else
           exit 1
         fi
         mkdir -p "$FASTLANE_DIR/$current_lang/changelogs"
-        printf '%s' "$current_text" > "$FASTLANE_DIR/$current_lang/changelogs/$VERSION.txt"
+        printf '%s\n' "$current_text" > "$FASTLANE_DIR/$current_lang/changelogs/$VERSION.txt"
         echo "Created changelog for $current_lang"
         current_lang=""
         current_text=""
