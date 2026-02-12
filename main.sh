@@ -18,12 +18,22 @@ else
     echo "File does not exist: $file_path"
 fi
 
-  bundle init
-  echo "gem \"fastlane\"">>Gemfile
-  bundle install
-  mkdir fastlane
-  touch fastlane/Appfile
-  touch fastlane/Fastfile
+echo "AC_FASTLANE_VERSION: $AC_FASTLANE_VERSION"
+
+bundle init
+
+if [ -z "$AC_FASTLANE_VERSION" ] || [ "$AC_FASTLANE_VERSION" = "latest" ]; then
+    echo 'gem "fastlane"' >> Gemfile
+    echo "Using latest fastlane version"
+else
+    echo "Using fastlane version: $AC_FASTLANE_VERSION"
+    echo "gem \"fastlane\", \"$AC_FASTLANE_VERSION\"" >> Gemfile
+fi
+  
+bundle install
+mkdir fastlane
+touch fastlane/Appfile
+touch fastlane/Fastfile
      
 CHANGELOG_FILE="$AC_RELEASE_NOTES_FILE"
 FASTLANE_DIR="fastlane/metadata/android"
